@@ -69,9 +69,9 @@ static const struct arg args[] = {
 	{ ram_used,       "RAM %s/",       NULL         },
 	{ ram_total,      "%s | ",         NULL         },
 	{ disk_perc,      "/ %s%% | ",     "/"          },
-    { vol_perc,       "♪ %s | ",       "/dev/mixer" },
-	{ battery_perc,   "⚡︎ %s%%",       "BAT1"       },
-	{ battery_state,  "%s |",          "BAT1"       },
+    { run_command,    "♪ %s | ",        "amixer sget Master | tail -1 | awk '{print $5 }' | sed 's/[][]//g'" },
+	{ battery_perc,   "⚡︎ %s%%",       "BAT0"       },
+	{ battery_state,  "%s |",          "BAT0"       },
 	{ datetime,       " %s",           "%a %b %d %T"},
 };
 
