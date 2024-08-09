@@ -65,10 +65,11 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function       format           argument */
-	{ wifi_essid,     " %s ",           "wlp2s0"     },
+	{ wifi_essid,     " %s ",          "wlp2s0"     },
 	{ netspeed_rx,    "%sB/s ↓ ",      "wlp2s0"     },
 	{ netspeed_tx,    "%sB/s ↑ | ",    "wlp2s0"     },
-	{ cpu_perc,       "CPU %s%% | ",  NULL         },
+	{ run_command,    "POW %s W | ",   "cat /sys/class/power_supply/BAT0/power_now | xargs echo '1/1000000 *' | bc -l | xargs printf '%.2f\n'" },
+	{ cpu_perc,       "CPU %s%% | ",   NULL         },
 	{ ram_used,       "RAM %s/",       NULL         },
 	{ ram_total,      "%s | ",         NULL         },
 	{ disk_free,      "/ %s | ",       "/"          },
