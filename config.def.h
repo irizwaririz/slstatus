@@ -64,18 +64,19 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function       format           argument */
-	{ wifi_essid,     " %s ",          "wlp2s0"     },
-	{ netspeed_rx,    "%sB/s ↓ ",      "wlp2s0"     },
-	{ netspeed_tx,    "%sB/s ↑ | ",    "wlp2s0"     },
-	{ run_command,    "POW %s W | ",   "cat /sys/class/power_supply/BAT0/power_now | xargs echo '1/1000000 *' | bc -l | xargs printf '%.2f\n'" },
-	{ cpu_perc,       "CPU %s%% | ",   NULL         },
-	{ ram_used,       "RAM %s/",       NULL         },
-	{ ram_total,      "%s | ",         NULL         },
-	{ disk_free,      "/ %s | ",       "/"          },
-    { run_command,    "♪ %s | ",       "amixer sget Master | tail -1 | awk '{print $5 }' | sed 's/[][]//g'" },
-	{ battery_perc,   "⚡︎ %s%%",       "BAT0"       },
-	{ battery_state,  "%s |",          "BAT0"       },
-	{ datetime,       " %s",           "%a %b %d %T"},
+	/* function             format           argument */
+	{ wifi_essid,           " %s ",          "wlp2s0"     },
+	{ netspeed_rx,          "%sB/s ↓ ",      "wlp2s0"     },
+	{ netspeed_tx,          "%sB/s ↑ | ",    "wlp2s0"     },
+	{ run_command,          "POW %s W | ",   "cat /sys/class/power_supply/BAT0/power_now | xargs echo '1/1000000 *' | bc -l | xargs printf '%.2f\n'" },
+	{ cpu_perc,             "CPU %s%% | ",   NULL         },
+	{ ram_used,             "RAM %s/",       NULL         },
+	{ ram_total,            "%s | ",         NULL         },
+	{ disk_free,            "/ %s | ",       "/"          },
+    { run_command,          "♪ %s | ",       "amixer sget Master | tail -1 | awk '{print $5 }' | sed 's/[][]//g'" },
+	{ battery_perc,         "⚡︎ %s%%",       "BAT0"       },
+	{ battery_state,        "%s ",           "BAT0"       },
+	{ battery_remaining,    "%s | ",          "BAT0"       },
+	{ datetime,             "%s",           "%a %b %d %T"},
 };
 
