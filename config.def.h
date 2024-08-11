@@ -14,8 +14,8 @@ static const char unknown_str[] = "n/a";
  *
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
- * battery_remaining   battery remaining HH:MM         battery name (BAT0)
- *                                                     NULL on OpenBSD/FreeBSD
+ * battery_remaining   battery remaining to empty      battery name (BAT0)
+ *                     or to full HH:MM                NULL on OpenBSD/FreeBSD
  * battery_state       battery charging state          battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
  * cat                 read arbitrary file             path
