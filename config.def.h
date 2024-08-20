@@ -9,11 +9,20 @@ static const char unknown_str[] = "n/a";
 /* maximum output string length */
 #define MAXLEN 2048
 
+/* battery levels to notify - add any levels you want to receive notification for (in percent) */
+const int notifiable_levels[] = {
+    20,
+    10,
+    5,
+};
+
 /*
  * function            description                     argument (example)
  *
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
+ * battery_notify      linux battery notifications     battery name (BAT0)
+ *                                                     OpenBSD/FreeBSD not supported
  * battery_remaining   battery remaining to empty      battery name (BAT0)
  *                     or to full HH:MM                NULL on OpenBSD/FreeBSD
  * battery_state       battery charging state          battery name (BAT0)
@@ -65,18 +74,19 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function             format           argument */
-	{ wifi_essid,           " %s ",          "wlp2s0"     },
-	{ netspeed_rx,          "%sB/s ↓ ",      "wlp2s0"     },
-	{ netspeed_tx,          "%sB/s ↑ | ",    "wlp2s0"     },
-	{ cpu_perc,             "CPU %s%% | ",   NULL         },
-	{ ram_used,             "RAM %s/",       NULL         },
-	{ ram_total,            "%s | ",         NULL         },
-	{ disk_free,            "/ %s | ",       "/"          },
+    { battery_notify,       "",              "BAT0"        }, /* There is nothing to print it's just a notification*/
+	{ wifi_essid,           " %s ",          "wlp2s0"      },
+	{ netspeed_rx,          "%sB/s ↓ ",      "wlp2s0"      },
+	{ netspeed_tx,          "%sB/s ↑ | ",    "wlp2s0"      },
+	{ cpu_perc,             "CPU %s%% | ",   NULL          },
+	{ ram_used,             "RAM %s/",       NULL          },
+	{ ram_total,            "%s | ",         NULL          },
+	{ disk_free,            "/ %s | ",       "/"           },
     { run_command,          "♪ %s | ",       "amixer sget Master | tail -1 | awk '{print $5 }' | sed 's/[][]//g'" },
-	{ battery_perc,         "⚡︎ %s%% ",      "BAT0"       },
-	{ battery_state,        "%s",            "BAT0"       },
-	{ run_command,          "%sW ",         "cat /sys/class/power_supply/BAT0/power_now | xargs echo '1/1000000 *' | bc -l | xargs printf '%.2f\n'" },
-	{ battery_remaining,    "%s | ",         "BAT0"       },
-	{ datetime,             "%s ",            "%a %b %d %T"},
+	{ battery_perc,         "⚡︎ %s%% ",      "BAT0"        },
+	{ battery_state,        "%s",            "BAT0"        },
+	{ run_command,          "%sW ",          "cat /sys/class/power_supply/BAT0/power_now | xargs echo '1/1000000 *' | bc -l | xargs printf '%.2f\n'" },
+	{ battery_remaining,    "%s | ",         "BAT0"        },
+	{ datetime,             "%s ",           "%a %b %d %T" },
 };
 
