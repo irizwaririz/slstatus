@@ -75,7 +75,7 @@ const int notifiable_levels[] = {
 static const struct arg args[] = {
 	/* function             format           argument */
     { battery_notify,       "",              "BAT0"        }, /* There is nothing to print it's just a notification*/
-	{ wifi_essid,           " %s ",          "wlp2s0"      },
+	{ run_command,          " %s ",          "nmcli -t -f active,ssid dev wifi | grep 'yes' | cut -d':' -f2" },
 	{ netspeed_rx,          "%sB/s ↓ ",      "wlp2s0"      },
 	{ netspeed_tx,          "%sB/s ↑ | ",    "wlp2s0"      },
 	{ cpu_perc,             "CPU %s%% | ",   NULL          },
